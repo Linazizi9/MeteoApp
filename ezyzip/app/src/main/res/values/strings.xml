@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">DevProject</string>
+    <string name="hint_name">name</string>
+    <string name="hint_lastname">lastname</string>
+    <string name="hint_mail">mail</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_repassword">repassword</string>
+    <string name="label_btn_login">Login</string>
+    <string name="politique">politique</string>
+    <string name="str_welcome">Welcome</string>
+</resources>
