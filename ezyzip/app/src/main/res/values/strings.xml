@@ -5,7 +5,9 @@
     <string name="hint_mail">mail</string>
     <string name="hint_password">Password</string>
     <string name="hint_repassword">repassword</string>
-    <string name="label_btn_login">Login</string>
+    <string name="label_btn_login"><b>Connexion</b></string>
+    <string name="label_btn_signup"><b>Je m\'inscris</b></string>
     <string name="politique">politique</string>
     <string name="str_welcome">Welcome</string>
+    <string name="str_label_capture_buttom">capture image</string>
 </resources>
