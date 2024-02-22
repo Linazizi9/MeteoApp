@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="25dp"
+    android:background="@drawable/background"
+    tools:context=".Welcome">
+
+    <!-- Autres éléments de mise en page -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="#5a189a"
+        android:textSize="40sp"
+        android:layout_marginTop="50dp"
+        android:text="Mes villes favoris"
+        android:textStyle="bold"
+        />
+
+
+    <LinearLayout
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/tvCityAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:textSize="23sp"
+            android:textColor="@android:color/white"
+            />
+
+        <Button
+            android:id="@+id/tvCityAdd1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nice"
+            android:textSize="23sp"
+            android:textColor="@android:color/white"
+            android:layout_marginLeft="10dp"
+            />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "501130401020",
+    "project_id": "weatherwhiz-40acd",
+    "storage_bucket": "weatherwhiz-40acd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:501130401020:android:2608076eb714a0a946f379",
+        "android_client_info": {
+          "package_name": "com.example.devproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3757SVqqPYn1tRU_0fVmV5lDMHR6pXGI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
