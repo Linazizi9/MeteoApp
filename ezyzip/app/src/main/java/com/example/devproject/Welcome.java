@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import android.content.Intent;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -57,68 +57,77 @@ public class Welcome extends AppCompatActivity  {
         String country = etCountry.getText().toString().trim();
         if(city.equals("")){
             tvResult.setText("City field can not be empty!");}
-            else{
+        else{
             if(!country.equals("")){
                 tempUrl = url + "?q=" + city + "," + country + "&appid=" + appid;
                 System.out.println(tempUrl);
             }
-                else{
+            else{
                 tempUrl = url + "?q=" + city + "&appid=" + appid;
                 System.out.println(tempUrl);
-                }
+            }
 
-                StringRequest stringRequest = new StringRequest (Request.Method. POST, tempUrl, new Response.Listener<String>() {
-                    @Override
+            StringRequest stringRequest = new StringRequest (Request.Method. POST, tempUrl, new Response.Listener<String>() {
+                @Override
                 public void onResponse(String response) {
-                   // Log.d("response", response);
-                        String output="";
-                        try {
-                            JSONObject jsonResponse=new JSONObject(response);
-                            JSONArray jsonArray=jsonResponse.getJSONArray("weather");
-                            JSONObject jsonObjectWeather=jsonArray.getJSONObject(0);
-                            String description =jsonObjectWeather.getString("description");
-                            JSONObject jsonObjectMain =jsonResponse.getJSONObject("main");
-                            double temp=jsonObjectMain.getDouble("temp");
-                            double feelsLike=jsonObjectMain.getDouble("feels_like")-273.15;
-                            float pressure=jsonObjectMain.getInt("pressure");
-                            int humidity=jsonObjectMain.getInt("humidity");
-                            JSONObject jsonObjectWind=jsonResponse.getJSONObject("wind");
-                            String wind=jsonObjectWind.getString("speed");
-                            JSONObject jsonObjectClouds=jsonResponse.getJSONObject("clouds");
-                            String clouds =jsonObjectClouds.getString("all");
-                            JSONObject jsonObjectSys=jsonResponse.getJSONObject("sys");
-                            String countryName =jsonObjectSys.getString("country");
-                            String cityName=jsonResponse.getString("name");
-                           // tvResult.setTextColor(Color.rgb(68,134,199));
-                            tvResult.setTextColor(Color.BLACK);
-                            tvResult.setTextSize(16);
-                            tvResult.setPadding(0, 16, 0, 0);
-                            output += "Météo actuelle de " + cityName + " (" + countryName + ")\n"
-                                    + "Température: " + df.format(temp) + " °C\n"
-                                    + "Ressentie comme: " + df.format(feelsLike) + " °C\n"
-                                    + "Humidité: " + humidity + "%\n"
-                                    + "Description: " + description + "\n"
-                                    + "Vitesse du vent: " + wind + " m/s\n"
-                                    + "Nébulosité: " + clouds + "%\n"
-                                    + "Pression: " + pressure + " hPa";
-                            tvResult.setText(output);
+                    // Log.d("response", response);
+                    String output="";
+                    try {
+                        JSONObject jsonResponse=new JSONObject(response);
+                        JSONArray jsonArray=jsonResponse.getJSONArray("weather");
+                        JSONObject jsonObjectWeather=jsonArray.getJSONObject(0);
+                        String description =jsonObjectWeather.getString("description");
+                        JSONObject jsonObjectMain =jsonResponse.getJSONObject("main");
+                        double temp=jsonObjectMain.getDouble("temp");
+                        double temp1=temp-273.15;
+                        double feelsLike=jsonObjectMain.getDouble("feels_like");
+                        double feelsLike1=feelsLike-273.15;
+                        float pressure=jsonObjectMain.getInt("pressure");
+                        int humidity=jsonObjectMain.getInt("humidity");
+                        JSONObject jsonObjectWind=jsonResponse.getJSONObject("wind");
+                        String wind=jsonObjectWind.getString("speed");
+                        JSONObject jsonObjectClouds=jsonResponse.getJSONObject("clouds");
+                        String clouds =jsonObjectClouds.getString("all");
+                        JSONObject jsonObjectSys=jsonResponse.getJSONObject("sys");
+                        String countryName =jsonObjectSys.getString("country");
+                        String cityName=jsonResponse.getString("name");
 
+                        String output1= df.format(temp1) + " °C\n";
+                        String output2= humidity + "%\n";
+                        String output3= df.format(feelsLike1) + " °C\n";
+                        String output4= pressure + " hPa";
+                        // Créer un Intent pour démarrer la nouvelle activité
+                        Intent intent = new Intent(Welcome.this, WeatherDetailsActivity.class);
+                        // Ajouter les données météorologiques à l'intention
+                        intent.putExtra("city", cityName);
+                        intent.putExtra("country", countryName);
+                        intent.putExtra("description", description);
+                        intent.putExtra("temperature", output1);
+                        intent.putExtra("feelsLike", output3);
+                        intent.putExtra("pressure", output4);
+                        intent.putExtra("humidity", output2);
+                        intent.putExtra("wind", wind);
+                        intent.putExtra("clouds", clouds);
+                        startActivity(intent);
 
-                        }
-                        catch (JSONException e){
-                            e.printStackTrace();
-                        }
-                }
-                }, new Response.ErrorListener(){
-                    @Override
-                    public void onErrorResponse (VolleyError error) {
-                        Toast.makeText(getApplicationContext(), error.toString().trim(), Toast.LENGTH_SHORT).show();
                     }
-                });
-                RequestQueue requestQueue=Volley.newRequestQueue(getApplicationContext());
-                requestQueue.add(stringRequest);
+                    catch (JSONException e){
+                        e.printStackTrace();
+                    }
+                }
+            }, new Response.ErrorListener(){
+                @Override
+                public void onErrorResponse (VolleyError error) {
+                    Toast.makeText(getApplicationContext(), error.toString().trim(), Toast.LENGTH_SHORT).show();
+                }
+            });
+            RequestQueue requestQueue=Volley.newRequestQueue(getApplicationContext());
+            requestQueue.add(stringRequest);
 
-                 }}
+        }
+    }
+
+
 
 
 }

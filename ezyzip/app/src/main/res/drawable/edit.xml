@@ -1,0 +1,4 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#80ffffff" /> <!-- Couleur de fond (blanc) -->
+    <corners android:radius="10dp" /> <!-- Rayon de bordure (modifiable selon vos besoins) -->
+</shape>

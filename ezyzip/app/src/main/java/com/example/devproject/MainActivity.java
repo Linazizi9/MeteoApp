@@ -13,6 +13,8 @@ import com.example.devproject.Connexion;
 import com.example.devproject.DbUtils.LocalDb;
 import com.example.devproject.DbUtils.User;
 import com.example.devproject.RoomImplementation;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity  {
     private EditText edname;
@@ -22,11 +24,13 @@ public class MainActivity extends AppCompatActivity  {
     private EditText edrepassword;
     private Button btnlogin;
     private Button btnSignUp;
-
+    private DatabaseReference mDatabase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         edname = findViewById(R.id.ed_name);
         edlastname = findViewById(R.id.ed_lastname);
@@ -65,9 +69,6 @@ public class MainActivity extends AppCompatActivity  {
     }
 
     private void saveUserInformation(String name, String lastname, String mail, String password) {
-        // Utilisez la méthode de sauvegarde des informations de l'utilisateur ici (par exemple, en utilisant une base de données)
-
-        // Dans cet exemple, nous utilisons une base de données locale
         User user = new User();
         user.setName(name);
         user.setLastname(lastname);
@@ -85,5 +86,7 @@ public class MainActivity extends AppCompatActivity  {
         // Une fois l'inscription terminée, redirigez vers la page de connexion
         Intent intent = new Intent(MainActivity.this, Connexion.class);
         startActivity(intent);
+
+
     }
 }
